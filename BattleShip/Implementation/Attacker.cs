@@ -9,7 +9,8 @@ namespace BattleShipGame.Implementation
     {
         public AttackStatus Attack(Board board, int row, int column)
         {
-           if (board.BoardCellStatuses[row,column]== BoardCellStatus.Occupied || board.BoardCellStatuses[row, column] == BoardCellStatus.Hit)
+            validate(board, row, column);
+            if (board.BoardCellStatuses[row, column] == BoardCellStatus.Occupied || board.BoardCellStatuses[row, column] == BoardCellStatus.Hit)
             {
                 board.BoardCellStatuses[row, column] = BoardCellStatus.Hit;
                 board.HitCount++;
@@ -17,6 +18,15 @@ namespace BattleShipGame.Implementation
             }
             board.BoardCellStatuses[row, column] = BoardCellStatus.Miss;
             return AttackStatus.Miss;
+        }
+
+        private void validate(Board board, int row, int column)
+        {
+            string errMsg = "Attack postion cannot be outside of board.";
+            if (row > board.Rows || column > board.Columns)
+            {
+                throw new IndexOutOfRangeException(errMsg);
+            }
         }
     }
 }
