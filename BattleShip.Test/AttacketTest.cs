@@ -10,7 +10,10 @@ namespace BattleShip.Test
         [InlineData(10, 10, 0, 0, 0, 0, ShipType.Submarine, BoardCellStatus.Hit)]
         [InlineData(10, 10, 0, 0, 0, 1, ShipType.Submarine, BoardCellStatus.Hit)]
         [InlineData(10, 10, 0, 0, 0, 2, ShipType.Submarine, BoardCellStatus.Miss)]
-        [InlineData(10, 10, 0, 0, 0, 3, ShipType.Submarine, BoardCellStatus.Miss)
+        [InlineData(10, 10, 0, 0, 0, 3, ShipType.Submarine, BoardCellStatus.Miss)]
+        // gives error out of bound
+        [InlineData(10, 10, 0, 11, 0, 0, ShipType.Submarine, BoardCellStatus.Hit)]
+        [InlineData(10, 10, 11, 0, 0, 1, ShipType.Submarine, BoardCellStatus.Hit)]
 
         public void shouldReturnCorrectAttackStatusWhenAttacked(
             int boardRows,
